@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaUser } from "react-icons/fa";
 import { FaFlag } from "react-icons/fa";
 
-const Card = ({ player, setCoin, coin }) => {
+const Card = ({ player, setCoin, coin , selectedPlayers, setSelectedPlayers}) => {
     const [isSelected, setIsSelected]= useState(false)
     return (
         <div>
@@ -41,6 +41,7 @@ const Card = ({ player, setCoin, coin }) => {
                             } else {
                                 alert("Not enough coins to choose this player")
                             }
+                            setSelectedPlayers([...selectedPlayers, player])
                         }} disabled={isSelected}>{isSelected === true ? "Selected" : "Choose Player"}</button>
                     </div>
   </div>
