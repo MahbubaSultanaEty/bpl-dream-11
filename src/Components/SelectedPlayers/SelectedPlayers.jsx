@@ -1,6 +1,6 @@
 import React from 'react';
-import { MdDelete } from "react-icons/md";
-import { FaUser } from "react-icons/fa6";
+
+import SelectedCard from '../ui/SelectedCard';
 
 const SelectedPlayers = ({ selectedPlayers, setSelectedPlayers, setCoin, coin }) => {
     console.log(selectedPlayers, "selectedPlayers");
@@ -17,25 +17,13 @@ const SelectedPlayers = ({ selectedPlayers, setSelectedPlayers, setCoin, coin })
     
     return (
         <div>
-            {
-                selectedPlayers.map(selectedPlayer => {
-                    return <div className='space-y-4 ' key={selectedPlayer.id}>
-                        <div className='flex justify-between pr-5 border my-2 bg-gray-200 rounded-xl'>
-                            <div className='flex  gap-3 h-20 w-55 md:w-70 md:h-30 p-3  m-2 items-center'>
-                                <img className='h-10 w-12 md:h-20 md:w-20 rounded' src={selectedPlayer.image} alt={selectedPlayer.playerName} />
-                                <div >
-                                    <p className='font-semibold md:text-lg text-sm flex items-center gap-1'> <FaUser />{selectedPlayer.playerName}</p>  
-                                    <p className='font-semibold text-xs md:text-sm'>{selectedPlayer.playerType}</p>  
-                                </div>    
-                            </div>
-                        
-                            <div className='flex items-center'>
-                                <button
-                                    onClick={() =>handleDeleteSelectedPlayer(selectedPlayer)}
-                                    className='btn text-red-400 '><MdDelete /></button>
-                            </div>
-                            </div>
-                </div>
+            {selectedPlayers.length === 0 ?
+                <div className='bg-amber-100 py-24  text-center rounded-lg '>
+                    <h2 className='font-bold md:text-2xl text-xl text-gray-800'>No Players Selected Yet</h2>
+                    <p className='font-semibold text-sm  md:text-lg text-gray-500'>Go to available players section to choose player</p>
+                </div> :
+                selectedPlayers.map(selectedPlayer => { 
+                    return <SelectedCard selectedPlayer={selectedPlayer} handleDeleteSelectedPlayer={handleDeleteSelectedPlayer}></SelectedCard>
             })
             }
         </div>
