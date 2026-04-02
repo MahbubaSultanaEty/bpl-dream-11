@@ -37,12 +37,16 @@ const Card = ({ player, setCoin, coin , selectedPlayers, setSelectedPlayers}) =>
                             let newCoin = coin - player.price;
                             if(newCoin >= 0){
                                 setCoin(coin - player.price);
-                                alert(`${player.playerName} is selected`)
+                                alert(`${player.playerName} is selected`);
+                                setSelectedPlayers([...selectedPlayers, player]);
+                                
                             } else {
                                 alert("Not enough coins to choose this player")
                             }
-                            setSelectedPlayers([...selectedPlayers, player])
-                        }} disabled={isSelected}>{isSelected === true ? "Selected" : "Choose Player"}</button>
+                           
+                        }}  disabled={ coin < player.price || isSelected}>
+                            {isSelected === true ? "Selected" : "Choose Player"}
+                        </button>
                     </div>
   </div>
 </div>
